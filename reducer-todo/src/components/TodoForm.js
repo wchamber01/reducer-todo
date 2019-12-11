@@ -1,19 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 
 const TodoForm = props => {
+  const [newTodo, setNewTodo] = useState("");
+  const handleChanges = e => {
+    setNewTodo(e.target.value);
+  };
   return (
-    <form onSubmit={props.handleSubmit}>
-      <input>
-        value={props.newTodo}
-        onChange={props.handleChanges}
-        type="text"
-        name="todo"
-        placeholder="Add Todo..."
-      </input>
-      <button>Add</button>
-    </form>
-    <button onClick={props.clearCompleted}>Clear Completed</button>
-  )
-}
+    <>
+      <form /*onSubmit={() => props.addTodo(newTodo)}*/>
+        <input
+          value={newTodo}
+          onChange={handleChanges}
+          type="text"
+          name="todo"
+          placeholder="Add Todo..."
+        />
+        <button
+          onClick={e => (e.preventDefault(), props.addTodo(newTodo))}
+          value=""
+        >
+          Add
+        </button>
+      </form>
+      <button onClick={e => (e.preventDefault(), props.clearCompleted)}>
+        Clear Completed
+      </button>
+    </>
+  );
+};
 
 export default TodoForm;

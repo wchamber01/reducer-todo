@@ -1,50 +1,34 @@
-import React from "react";
+import React, { useReducer } from "react";
 import "./App.css";
+import { reducer, initialState } from "./reducers/itemReducer";
+import TodoList from "./components/TodoList";
+import TodoForm from "./components/TodoForm";
 
-export const initialState = {
-  items = [
-    {
-      item: "Learn about reducers",
-      completed: false,
-      id: 3892987589
-    },
-    {
-      item: "practice JavaScript",
-      completed: false,
-      id: 65423165
-    },
-    {
-      item: "finish this project",
-      completed: false,
-      id: 165146535
-    },
-    {
-      item: "study for tomorrow",
-      completed: false,
-      id: 9874561684
-    }
-  ]
-};
-
-addTodo = newTodoText => {
-  const newTodo = {
-    item: newTodoText,
-    completed: false,
-    id: Date.now()
-  };
-};
-
-handleChanges = e => {
-  setNewTodoItem(e.target.value);
-};
-
+// handleSubmit = e => {
+//   e.preventDefault(); //Prevents page from reloading on submit
+//   this.props.addTodo(this.state.newItem); //Assigns value of newItem to "property" of addTodo function by using "props"
+//   this.setState({
+//     newItem: "" //clears input value after submit
+//   });
+// };
 
 function App() {
-  return 
-    <div className="App">something
-    <TodoList />
-    <Form />
-    </div>;
+  const [todoState, dispatch] = useReducer(reducer, initialState);
+  const addTodo = newTodo => {
+    dispatch({ type: "ADD_TODO", payload: newTodo });
+  };
+  const toggleCompleted = toggle => {
+    dispatch({ type: "TOGGLE_COMPLETED", payload: toggle });
+  };
+
+  console.log(todoState);
+  return (
+    <div className="App">
+      <h1>ToDo List</h1>
+      <TodoList todoState={todoState} />
+      <TodoForm addTodo={addTodo} />
+    </div>
+  );
 }
 
 export default App;

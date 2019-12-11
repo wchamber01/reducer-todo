@@ -2,13 +2,10 @@ import React, { useState, useReducer } from "react";
 import { reducer } from "../reducers/itemReducer";
 import { initialState } from "../App";
 
-const Todo = () => {
-  const [todoState, dispatch] = useReducer(reducer, initialState);
-
-  const [newTodoItem, setNewTodoItem] = useState("");
-
-
-  return (...todoState, )
+const Todo = props => {
+  return <p> {props.todoItem.item}</p>;
 };
 
 export default Todo;
+
+//add edit and delete function
