@@ -4,14 +4,6 @@ import { reducer, initialState } from "./reducers/itemReducer";
 import TodoList from "./components/TodoList";
 import TodoForm from "./components/TodoForm";
 
-// handleSubmit = e => {
-//   e.preventDefault(); //Prevents page from reloading on submit
-//   this.props.addTodo(this.state.newItem); //Assigns value of newItem to "property" of addTodo function by using "props"
-//   this.setState({
-//     newItem: "" //clears input value after submit
-//   });
-// };
-
 function App() {
   const [todoState, dispatch] = useReducer(reducer, initialState);
   const addTodo = newTodo => {

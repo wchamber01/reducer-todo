@@ -30,15 +30,19 @@ export const reducer = (state, action) => {
         completed: false,
         id: Date.now()
       };
-      return {
+      return [
         ...state,
-        items: [...state.items, newItem]
-      };
+        newItem
+        // items: [...state.items, newItem]
+      ];
     case "TOGGLE_COMPLETED":
       return state.map(item => {
-        if (item.id === action.payload) {
-          item.completed = !item.completed;
-        }
+        return item.id === action.payload
+          ? { ...item, completed: !item.completed }
+          : item;
+        // if (item.id === action.payload) {
+        //   item.completed = !item.completed;
+        // }
       });
     case "CLEAR_COMPLETED":
       return state.filter(item => !item.completed);
