@@ -16,13 +16,21 @@ const TodoForm = props => {
           placeholder="Add Todo..."
         />
         <button
-          onClick={e => (e.preventDefault(), props.addTodo(newTodo))}
-          value=""
+          onClick={e => {
+            e.preventDefault();
+            props.addTodo(newTodo);
+            setNewTodo("");
+          }}
         >
           Add
         </button>
       </form>
-      <button onClick={e => (e.preventDefault(), props.clearCompleted)}>
+      <button
+        onClick={e => {
+          e.preventDefault();
+          props.clearCompleted();
+        }}
+      >
         Clear Completed
       </button>
     </>

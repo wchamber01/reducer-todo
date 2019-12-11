@@ -17,16 +17,17 @@ function App() {
   const addTodo = newTodo => {
     dispatch({ type: "ADD_TODO", payload: newTodo });
   };
-  const toggleCompleted = toggle => {
-    dispatch({ type: "TOGGLE_COMPLETED", payload: toggle });
+  const toggleCompleted = id => {
+    dispatch({ type: "TOGGLE_COMPLETED", payload: id });
   };
-
-  console.log(todoState);
+  const clearCompleted = () => {
+    dispatch({ type: "CLEAR_COMPLETED" });
+  };
   return (
     <div className="App">
       <h1>ToDo List</h1>
-      <TodoList todoState={todoState} />
-      <TodoForm addTodo={addTodo} />
+      <TodoList todoState={todoState} toggleCompleted={toggleCompleted} />
+      <TodoForm addTodo={addTodo} clearCompleted={clearCompleted} />
     </div>
   );
 }

@@ -1,27 +1,25 @@
-export const initialState = {
-  items: [
-    {
-      item: "Learn about reducers",
-      completed: false,
-      id: 3892987589
-    },
-    {
-      item: "practice JavaScript",
-      completed: false,
-      id: 65423165
-    },
-    {
-      item: "finish this project",
-      completed: false,
-      id: 165146535
-    },
-    {
-      item: "study for tomorrow",
-      completed: false,
-      id: 9874561684
-    }
-  ]
-};
+export const initialState = [
+  {
+    item: "Learn about reducers",
+    completed: false,
+    id: 3892987589
+  },
+  {
+    item: "practice JavaScript",
+    completed: false,
+    id: 65423165
+  },
+  {
+    item: "finish this project",
+    completed: false,
+    id: 165146535
+  },
+  {
+    item: "study for tomorrow",
+    completed: false,
+    id: 9874561684
+  }
+];
 
 export const reducer = (state, action) => {
   console.log(state, action);
@@ -39,7 +37,7 @@ export const reducer = (state, action) => {
     case "TOGGLE_COMPLETED":
       return state.map(item => {
         if (item.id === action.payload) {
-          item.completed = item.completed;
+          item.completed = !item.completed;
         }
       });
     case "CLEAR_COMPLETED":
